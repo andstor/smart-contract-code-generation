@@ -10,8 +10,9 @@
 #SBATCH --mail-user=andr3.storhaug@gmail.com
 #SBATCH --mail-type=ALL
 
-WORKDIR=${SLURM_SUBMIT_DIR}
-cd "${WORKDIR}/models/gpt-neox"
+MODEL_DIR="${SLURM_SUBMIT_DIR}/models/gpt-neox"
+CONFIG_DIR="${SLURM_SUBMIT_DIR}/.hpc/gpt-neox/configs/"
+
 echo "We are running from this directory: $SLURM_SUBMIT_DIR"
 echo "The name of the job is: $SLURM_JOB_NAME"
 echo "Th job ID is $SLURM_JOB_ID"
@@ -22,6 +23,13 @@ echo "We are using $SLURM_CPUS_ON_NODE cores per node"
 echo "Total of $SLURM_NTASKS cores"
 echo "-----------------------------------------------------"
 
+module purge
+module load foss/2020b
+module load Anaconda3/2020.07
+module load CUDA/11.3.1
+
+cd $MODEL_DIR
+
 source .venv/bin/activate
 
-./deepy.py generate.py ./configs/20B.yml
+python ./deepy.py generate.py -d configs ${CONFIG_DIR}/20B.yml ${CONFIG_DIR}/text_generation.yml
