@@ -1,4 +1,9 @@
-#!/bin/sh
+#!/bin/bash
+
+scriptpath="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+model_path="${scriptpath}/../../models/gpt-neox"
+
+cd $model_path
 
 module load foss/2020b
 module load Anaconda3/2020.07
