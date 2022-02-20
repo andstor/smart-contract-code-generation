@@ -23,7 +23,7 @@ do
 done
 
 venv="./models/${model}/.venv"
-if [ -e ${venv} ]; then
+if [ ! -e ${venv} ]; then
    echo "Installing dependencies"
    ./.hpc/gpt-neox/setup.sh
 fi
