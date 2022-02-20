@@ -28,6 +28,8 @@ module load foss/2020b
 module load Anaconda3/2020.07
 module load CUDA/11.3.1
 
+export CXX=g++
+
 cd $MODEL_DIR
 
 source .venv/bin/activate

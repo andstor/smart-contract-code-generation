@@ -44,7 +44,7 @@ If outside of campus network, use VPN.
 
 ### Monitor logs in real time
 ```shell
-tail +1 -f /path/file.log
+tail -f -n +1 /path/file.log
 ```
 
 ### Controlling Slurm jobs

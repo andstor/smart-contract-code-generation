@@ -22,13 +22,10 @@ do
     esac
 done
 
-while true; do
-    read -p "Do you wish to install the model? [Y/n] " yn
-    case $yn in
-        [Yy]* ) ./.hpc/gpt-neox/setup.sh; break;;
-        [Nn]* ) break;;
-        * ) echo "Please answer yes or no.";;
-    esac
-done
+venv="./models/${model}/.venv"
+if [ -e ${venv} ]; then
+   echo "Installing dependencies"
+   ./.hpc/gpt-neox/setup.sh
+fi
 
 sbatch ./.hpc/${model}/job.slurm
