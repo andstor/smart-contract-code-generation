@@ -5,22 +5,17 @@
 PS3='Which model to use: '
 options=("GPT-NeoX-20B" "BERT")
 
-model
-modelname
-
 select opt in "${options[@]}"
 do
     case $opt in
         "GPT-NeoX-20B")
             echo "Using $opt model"
             model="gpt-neox"
-            modelname="GPT-NeoX-20B"
             break
             ;;
         "BERT")
             echo "Using $opt model"
             model="bert"
-            modelname="BERT"
             break
             ;;
         *) echo "invalid option $REPLY";;
