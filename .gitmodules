@@ -1,3 +1,3 @@
-[submodule "gpt-neox"]
-	path = transformers
+[submodule "models/gpt-neox"]
+	path = models/gpt-neox
 	url = https://github.com/EleutherAI/gpt-neox.git
