@@ -16,10 +16,6 @@ huggingface-cli serve --task feature-extraction --model andstor/gpt-j-6B-smart-c
 curl -X POST "http://localhost:8888/forward" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"inputs\":\"Hello world!\"}"
 ```
 
-```script
-ssh -L local_port:destination_server_ip:remote_port user@hostname
-```
-
 ## Fine-tuning GPT-J (6 Billion Parameters)
 ### Setup
 ```shell
