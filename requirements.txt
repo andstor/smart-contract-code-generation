@@ -3,7 +3,7 @@ datasets >= 1.8.0
 sentencepiece != 0.1.92
 protobuf
 fastapi
-unicorn
+uvicorn
 git+https://github.com/huggingface/transformers.git@master#egg=transformers
 sklearn
 deepspeed>=0.5.10
