@@ -18,12 +18,12 @@ while True:
     text = str(text)
     if len(text) == 0:
         continue
-    ids = tokenizer(text, padding=True, return_tensors="pt").input_ids.to("cuda"
+    ids = tokenizer(text, padding=True, return_tensors="pt").input_ids.to("cuda")
 
     gen_tokens = model.generate(
         ids,
         do_sample=True,
-        max_length=length,
+        max_length=args.length,
         temperature=0.9,
         use_cache=True
     )

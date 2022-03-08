@@ -5,6 +5,21 @@
 
 GPT-J is the open-source alternative to OpenAI's GPT-3. The model is trained on the Pile, a 825 GiB diverse, open source language modelling data set that consists of 22 smaller, high-quality datasets combined together.
 
+
+## Serving
+
+```script
+huggingface-cli serve --task feature-extraction --model andstor/gpt-j-6B-smart-contract --config andstor/gpt-j-6B-smart-contract --tokenizer andstor/gpt-j-6B-smart-contract
+```
+
+```script
+curl -X POST "http://localhost:8888/forward" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"inputs\":\"Hello world!\"}"
+```
+
+```script
+ssh -L local_port:destination_server_ip:remote_port user@hostname
+```
+
 ## Fine-tuning GPT-J (6 Billion Parameters)
 ### Setup
 ```shell
