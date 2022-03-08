@@ -4,6 +4,6 @@ sentencepiece != 0.1.92
 protobuf
 fastapi
 unicorn
-git+https://github.com/huggingface/transformers.git@c0281fe#egg=transformers
+git+https://github.com/huggingface/transformers.git@master#egg=transformers
 sklearn
 deepspeed>=0.5.10
