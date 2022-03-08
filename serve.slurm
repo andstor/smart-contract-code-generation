@@ -34,5 +34,12 @@ export CXX=g++
 # Activate environment
 source .venv/bin/activate
 
+#Pick a random or predefined port
+#port=$(shuf -i 6000-9999 -n 1)
+port=8765
+# Forward the picked port to the prince on the same port. Here log-x is set to be the prince login node.
+ssh -N -f -R $port:localhost:$port idun-login2.hpc.ntnu.no
+ssh -N -f -R $port:localhost:$port idun-login2.hpc.ntnu.no
+
 # Start server
-transformers-cli serve --task feature-extraction --model andstor/gpt-j-6B-smart-contract --config andstor/gpt-j-6B-smart-contract --tokenizer andstor/gpt-j-6B-smart-contract
+transformers-cli serve --$port  --task clm --model andstor/gpt-j-6B-smart-contract --config andstor/gpt-j-6B-smart-contract --tokenizer andstor/gpt-j-6B-smart-contract
