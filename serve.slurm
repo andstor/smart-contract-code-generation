@@ -35,4 +35,4 @@ export CXX=g++
 source .venv/bin/activate
 
 # Start server
-huggingface-cli serve --task feature-extraction --model andstor/gpt-j-6B-smart-contract --config andstor/gpt-j-6B-smart-contract --tokenizer andstor/gpt-j-6B-smart-contract
+transformers-cli serve --task feature-extraction --model andstor/gpt-j-6B-smart-contract --config andstor/gpt-j-6B-smart-contract --tokenizer andstor/gpt-j-6B-smart-contract

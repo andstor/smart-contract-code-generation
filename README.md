@@ -6,10 +6,17 @@
 GPT-J is the open-source alternative to OpenAI's GPT-3. The model is trained on the Pile, a 825 GiB diverse, open source language modelling data set that consists of 22 smaller, high-quality datasets combined together.
 
 
+## Installation
+
+```shell
+pip install -r requirements.txt
+```
+Depending on the system you are using, you might need to install PyTorch from source. See [here](https://pytorch.org/get-started/locally/) for instructions.
+
 ## Serving
 
 ```script
-huggingface-cli serve --task feature-extraction --model andstor/gpt-j-6B-smart-contract --config andstor/gpt-j-6B-smart-contract --tokenizer andstor/gpt-j-6B-smart-contract
+transformers-cli serve --task feature-extraction --model andstor/gpt-j-6B-smart-contract --config andstor/gpt-j-6B-smart-contract --tokenizer andstor/gpt-j-6B-smart-contract
 ```
 
 ```script
