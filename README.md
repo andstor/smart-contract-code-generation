@@ -16,7 +16,7 @@ Depending on the system you are using, you might need to install PyTorch from so
 ## Serving
 
 ```script
-transformers-cli serve --task feature-extraction --model andstor/gpt-j-6B-smart-contract --config andstor/gpt-j-6B-smart-contract --tokenizer andstor/gpt-j-6B-smart-contract
+transformers-cli serve --task --device 0 feature-extraction --model andstor/gpt-j-6B-smart-contract --config andstor/gpt-j-6B-smart-contract --tokenizer andstor/gpt-j-6B-smart-contract
 ```
 
 ```script

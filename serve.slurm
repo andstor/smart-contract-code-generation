@@ -2,8 +2,8 @@
 #SBATCH --partition=GPUQ
 #SBATCH --account=share-ie-idi
 #SBATCH --time=00-02:00:00         # Upper time limit for the job (DD-HH:MM:SS)
-#SBATCH --nodes=1               # Allocate 1 nodes for the job
-#SBATCH --gres=gpu:A100m40:2       # Allocate 2 GPUs per node
+#SBATCH --nodes=1                  # Allocate 1 nodes for the job
+#SBATCH --gres=gpu:A100m40:1       # Allocate 1 GPU per node
 #SBATCH --job-name="GPT-J-6B server"
 #SBATCH --output=serve.out
 #SBATCH --mail-user=andr3.storhaug@gmail.com
@@ -37,9 +37,10 @@ source .venv/bin/activate
 #Pick a random or predefined port
 #port=$(shuf -i 6000-9999 -n 1)
 port=8765
-# Forward the picked port to the prince on the same port. Here log-x is set to be the prince login node.
-ssh -N -f -R $port:localhost:$port idun-login2.hpc.ntnu.no
+
+# Forward the picked port to the login node on the same port.
+ssh -N -f -R $port:localhost:$port idun-login1.hpc.ntnu.no
 ssh -N -f -R $port:localhost:$port idun-login2.hpc.ntnu.no
 
 # Start server
-transformers-cli serve --$port  --task clm --model andstor/gpt-j-6B-smart-contract --config andstor/gpt-j-6B-smart-contract --tokenizer andstor/gpt-j-6B-smart-contract
+transformers-cli serve --port $port --device 0 --task text-generation --model andstor/gpt-j-6B-smart-contract --config andstor/gpt-j-6B-smart-contract --tokenizer andstor/gpt-j-6B-smart-contract
