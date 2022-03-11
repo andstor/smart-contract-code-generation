@@ -24,14 +24,18 @@ curl -X POST "http://localhost:8888/forward" -H "accept: application/json" -H "C
 ```
 
 ## Fine-tuning GPT-J (6 Billion Parameters)
+
+### Requirements
+To load GPT-J in float32 precision one would need at least 2x the model of size CPU RAM: 1x for the initial weights and another 1x to load the checkpoint. So for just loading the GPT-J model, it would require at least 48GB or CPU RAM. To reduce the memory footprint, one can load the model in half precision.
+
+GPU needs around 40GB of GPU memory to load the model. For training/fine-tuning the model, it would require significant more GPU RAM. For example, the Adam optimizer makes four copies of the model: model, gradients, average and squared average of gradients. Hence, it would take 4x model size GPU memory, even with mixed precision as gradient updates are in fp32. Further,  this doesn't include the activations and data batches which would require some more GPU RAM. Hence, solutions like [DeepSpeed](https://www.deepspeed.ai) should be used for training/fine-tuning such large models.
+
 ### Setup
 ```shell
 git clone https://github.com/andstor/smart-contract-code-generation.git
 cd smart-contract-code-generation
 pip install -r requirements.txt 
 ```
-### Requirements
-The GPT-J model is an extremely large language model.
 
 ### Distributed training
 Due to the large size of the model, it is not feasible to train it on a single GPU. The following code shows how to train the model on multiple GPUs using Microsoft's DeepSpeed library.
@@ -67,7 +71,7 @@ You can easily log and monitor your runs code.
 
 #### Weights & Biases
 
-To use Weights & Biases, install the wandb package with:
+To use Weights & Biases, install the `wandb` package with:
 
 ```bash
 pip install wandb
@@ -96,10 +100,10 @@ Additional configuration options are available through generic [wandb environmen
 Refer to related [documentation & examples](https://docs.wandb.ai/integrations/huggingface).
 
 
-## Generate code with finetuned model
-To test the finetuned GPT-J model, this script can be iused:
+## Generate code with fine-tuned model
+To test the fine-tuned GPT-J model, this script can be issued:
 ```script
-python run_generate.py --model_name_or_path=finetuned --length 200
+python run_generate.py --model_name_or_path=finetuned --length 512
 ```
 
 Alternatively, the model can be used in custom code like this to generate text in batches:
@@ -113,6 +117,7 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 # Load tokenizer
 tokenizer = AutoTokenizer.from_pretrained("finetuned")
 tokenizer.pad_token = "[PAD]"
+
 # Load model
 model = AutoModelForCausalLM.from_pretrained("finetuned").to(device)
 print("Model loaded")
