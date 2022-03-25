@@ -2,6 +2,7 @@
 
 > 🧠 Smart contract code generation based on large-scale transformer-based language model.
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/gist/andstor/86589a0fcb2c6e759e12bdcfd8a7fabb/andstor-gpt-j-6b-smart-contract.ipynb)
 
 GPT-J is the open-source alternative to OpenAI's GPT-3. The model is trained on the Pile, a 825 GiB diverse, open source language modelling data set that consists of 22 smaller, high-quality datasets combined together.
 
@@ -12,16 +13,6 @@ GPT-J is the open-source alternative to OpenAI's GPT-3. The model is trained on 
 pip install -r requirements.txt
 ```
 Depending on the system you are using, you might need to install PyTorch from source. See [here](https://pytorch.org/get-started/locally/) for instructions.
-
-## Serving
-
-```script
-transformers-cli serve --task --device 0 feature-extraction --model andstor/gpt-j-6B-smart-contract --config andstor/gpt-j-6B-smart-contract --tokenizer andstor/gpt-j-6B-smart-contract
-```
-
-```script
-curl -X POST "http://localhost:8888/forward" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"inputs\":\"Hello world!\"}"
-```
 
 ## Fine-tuning GPT-J (6 Billion Parameters)
 
@@ -136,4 +127,16 @@ gen_tokens = model.generate(
 )
 generated_texts = tokenizer.batch_decode(gen_tokens, skip_special_tokens=True)
 print(generated_texts)
+```
+
+## Serving
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/gist/andstor/17105942ecf864d1796c36f6e74c5f29/andstor-gpt-j-6b-smart-contract-server.ipynb)
+
+```script
+transformers-cli serve --task --device 0 feature-extraction --model andstor/gpt-j-6B-smart-contract --config andstor/gpt-j-6B-smart-contract --tokenizer andstor/gpt-j-6B-smart-contract
+```
+
+```script
+curl -X POST "http://localhost:8888/forward" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"inputs\":\"Hello world!\"}"
 ```
