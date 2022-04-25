@@ -55,7 +55,7 @@ deepspeed --hostfile=hostfile run_clm.py \
 --dataset_name andstor/smart_contracts \
 --dataset_config_name inflated_plain_text \
 --overwrite_output_dir true \
---output_dir ./out4 \
+--output_dir ./out \
 --report_to wandb \
 --save_steps 300 \
 --do_train --do_eval \
