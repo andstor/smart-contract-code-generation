@@ -53,7 +53,7 @@ deepspeed --hostfile=hostfile run_clm.py \
 --run_name gpt-j-6B \
 --model_name_or_path EleutherAI/gpt-j-6B \
 --dataset_name andstor/smart_contracts \
---dataset_config_name plain_text \
+--dataset_config_name inflated_plain_text \
 --overwrite_output_dir true \
 --output_dir ./out4 \
 --report_to wandb \
