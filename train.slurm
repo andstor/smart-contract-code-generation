@@ -57,11 +57,14 @@ deepspeed --hostfile=hostfile run_clm.py \
 --overwrite_output_dir true \
 --output_dir ./out \
 --report_to wandb \
---save_steps 300 \
+--validation_split_percentage 20 \
+--save_steps 500 \
+--load_best_model_at_end \
 --do_train --do_eval \
 --logging_first_step --logging_steps 1 \
---num_train_epochs 2 \
+--num_train_epochs 3 \
 --evaluation_strategy steps --eval_steps 5 \
+--max_eval_samples 256 \
 --block_size 1024 \
 --bf16 \
 --gradient_accumulation_steps 16 --eval_accumulation_steps 16 \
