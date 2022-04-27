@@ -58,7 +58,7 @@ deepspeed --hostfile=hostfile run_clm.py \
 --output_dir ./out \
 --report_to wandb \
 --validation_split_percentage 20 \
---save_steps 500 \
+--save_steps 250 \
 --load_best_model_at_end \
 --do_train --do_eval \
 --logging_first_step --logging_steps 1 \
