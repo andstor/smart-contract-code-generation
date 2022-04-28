@@ -26,13 +26,14 @@ echo "Total of $SLURM_NTASKS cores"
 echo "Total of $SLURM_GPUS_ON_NODE GPUs"
 echo "-----------------------------------------------------"
 
+export TMPDIR=~/tmp
+export TORCH_EXTENSIONS_DIR=~/tmp/torch_extensions
+
 # Load modules
 module purge
 module load foss/2020b
 module load Anaconda3/2020.07
 module load CUDA/11.3.1
-
-export CXX=g++
 
 # Activate environment
 source .venv/bin/activate
@@ -61,7 +62,7 @@ deepspeed --hostfile=hostfile run_clm.py \
 --load_best_model_at_end \
 --do_train --do_eval \
 --logging_first_step --logging_steps 1 \
---num_train_epochs 3 \
+--num_train_epochs 2 \
 --evaluation_strategy steps --eval_steps 5 \
 --max_eval_samples 256 \
 --block_size 1024 \
