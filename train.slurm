@@ -46,12 +46,14 @@ scontrol show hostname $SLURM_NODELIST | while read line; do echo ${line}"  slot
 export WANDB_LOG_MODEL=true
 export WANDB_WATCH=false # BF16 causes problems
 export WANDB_PROJECT=smart-contracts
+export WANDB_RESUME=allow
+export WANDB_RUN_ID=3gwyi5r7
 
 # Start training
 deepspeed --hostfile=hostfile run_clm.py \
 --deepspeed ./ds_zero2_bf16.json \
 --run_name gpt-j-6B \
---model_name_or_path EleutherAI/gpt-j-6B \
+--model_name_or_path ./out/checkpoint-7500 \
 --dataset_name andstor/smart_contracts \
 --dataset_config_name inflated_plain_text \
 --output_dir ./out \
