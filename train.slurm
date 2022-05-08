@@ -53,7 +53,7 @@ export WANDB_RUN_ID=3gwyi5r7
 deepspeed --hostfile=hostfile run_clm.py \
 --deepspeed ./ds_zero2_bf16.json \
 --run_name gpt-j-6B \
---model_name_or_path ./out/checkpoint-7500 \
+--model_name_or_path EleutherAI/gpt-j-6B \
 --dataset_name andstor/smart_contracts \
 --dataset_config_name inflated_plain_text \
 --output_dir ./out \
